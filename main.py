@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import re
 
 today = datetime.now()
 start_date = os.environ['START_DATE']
@@ -16,6 +17,22 @@ app_secret = os.environ["APP_SECRET"]
 
 user_id = os.environ["USER_ID"]
 template_id = os.environ["TEMPLATE_ID"]
+hign_low = os.environ["HIGN_LOW"]
+
+def get_weather1(url):
+    response = requests.get(url)
+    response.encoding = 'utf-8'
+
+	# 抓取当天气温（非实时）
+    aim = re.findall('<input type="hidden" id="hidden_title" value="(.*?)月(.*?)日(.*?)时 (.*?)  (.*?)  (.*?)"',
+                     response.text, re.S)
+    hign_low = "今日气温：%s" % aim[0][5]
+    return hign_low
+
+if __name__ == "__main__":
+    url_bj = "http://www.weather.com.cn/weather1d/101030100.shtml"
+    get_weather1(url_bj)
+
 
 
 def get_weather():
@@ -48,6 +65,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthday_left":{"value":get_birthday()},"words":{"value":get_words(), "color":get_random_color()},,"high_low":{"value":get_weather1()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
