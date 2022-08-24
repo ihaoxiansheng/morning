@@ -44,7 +44,9 @@ def get_weather():
   weather = res['data']['list'][0]
   for group in weather:
     print("group==========" + group)
-  return weather['airQuality'],weather['airData'],weather['wind'],weather['humidity'],weather['date'],weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
+  return weather['humidity'],weather['wind'],weather['airData'],
+            weather['airQuality'],weather['date'],weather['weather'], 
+                math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
@@ -73,24 +75,26 @@ def get_random_color():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-airQuality, airData, wind, humidity, da, wea, temperature, highest, lowest = get_weather()
+humidity, wind, airData, airQuality, da, wea, temperature, highest, lowest = get_weather()
 data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "date1":{'value':'📅今天是：'},
         "city1":{'value':'🏙城市：'},
-        "tq":{"value":'🌤天气：'},
+        "humidity1":{"value":'💧湿度：'},
+        "wind1":{"value":'🌪风向风力：'},
+        "airData_Quality":{"value":'🌲空气质量：'},
         "temperature1":{'value':'🌡当前温度：'},
         "lowest1":{'value':'🍃最低气温：'},
         "highest1":{'value':'🔥最高气温：'},
         "meet_days1":{'value':'🎵我们遇见已经：'},
         "love_days1":{'value':'💕我们相恋已经：'},
         "birthday_left1":{"value":'🎂距离你的生日还有：'},
+        "date":{"value":today.strftime('%Y年%m月%d日'),"color":get_random_color()},
+        "week":{"value":get_week_day(datetime.now()),"color":get_random_color()},
+        "weather":{"value":wea,"color":get_random_color()},
         "humidity":{"value":humidity,"color":get_random_color()}, # 湿度
         "wind":{"value":wind,"color":get_random_color()}, # 风向级
         "airData":{"value":airData,"color":get_random_color()}, # 空气指数
         "airQuality":{"value":airQuality,"color":get_random_color()}, # 空气质量
-        "date":{"value":today.strftime('%Y年%m月%d日'),"color":get_random_color()},
-        "week":{"value":get_week_day(datetime.now()),"color":get_random_color()},
-        "weather":{"value":wea,"color":get_random_color()},
         "temperature":{"value":temperature,"color":get_random_color()},
         "love_days":{"value":get_count(),"color":get_random_color()},
         "birthday_left":{"value":get_birthday(),"color":get_random_color()},
