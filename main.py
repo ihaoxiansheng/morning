@@ -18,6 +18,18 @@ app_secret = os.environ["APP_SECRET"]
 user_ids = os.environ["USER_ID"].split("\n")
 template_id = os.environ["TEMPLATE_ID"]
 
+def get_week_day(date):
+    week_day = {
+        0: '星期一',
+        1: '星期二',
+        2: '星期三',
+        3: '星期四',
+        4: '星期五',
+        5: '星期六',
+        6: '星期日',
+    }
+    day = date.weekday()  # weekday()可以获得是星期几
+    return week_day[day]
 
 def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
@@ -60,6 +72,7 @@ wm = WeChatMessage(client)
 da, wea, temperature, highest, lowest = get_weather()
 data = {"today_date":{"value":da,"color":get_random_color()},
         "date":{"value":today.strftime('%Y年%m月%d日'),"color":get_random_color()},
+        "week":{"value":get_week_day(datetime.date.today()),"color":get_random_color()},
         "weather":{"value":wea,"color":get_random_color()},
         "temperature":{"value":temperature,"color":get_random_color()},
         "love_days":{"value":get_count(),"color":get_random_color()},
