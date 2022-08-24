@@ -89,6 +89,7 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "temperature":{"value":temperature,"color":get_random_color()},
         "love_days":{"value":get_count(),"color":get_random_color()},
         "birthday_left":{"value":get_birthday(),"color":get_random_color()},
+        "city":{"value":city,"color":get_random_color()},
         "meet_days":{"value":get_meet(),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
         "highest": {"value":highest,"color":get_random_color()},
