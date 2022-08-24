@@ -18,6 +18,13 @@ app_secret = os.environ["APP_SECRET"]
 user_ids = os.environ["USER_ID"].split("\n")
 template_id = os.environ["TEMPLATE_ID"]
 
+def get_access_token():
+    post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
+                .format(app_id, app_secret))
+    access_token = get(post_url).json()['access_token']
+    print(access_token)
+    return access_token
+
 def get_week_day(date):
     week_day = {
         0: '星期一',
