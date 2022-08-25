@@ -44,7 +44,10 @@ def get_weather():
   weather = res['data']['list'][0]
   for group in weather:
     print("group==========" + group)
-    weather['humidity']
+    print(weather['humidity'])
+    print(weather['wind'])
+    print(weather['airData'])
+    print(weather['airQuality'])
   return weather['humidity'], weather['wind'], weather['airData'], weather['airQuality'], weather['date'], weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
