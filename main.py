@@ -84,7 +84,7 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "weather1":{"value":'🌤天气：'},
         "humidity1":{"value":'💧湿度：'},
         "wind1":{"value":'🌪风向风力：'},
-        "airData_Quality":{"value":' ☘空气质量：'},
+        "airData_Quality":{"value":'🌲空气质量：'},
         "temperature1":{'value':'🌡当前温度：'},
         "lowest1":{'value':'🍃最低气温：'},
         "highest1":{'value':'🔥最高气温：'},
