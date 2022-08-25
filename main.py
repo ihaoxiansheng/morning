@@ -44,9 +44,7 @@ def get_weather():
   weather = res['data']['list'][0]
   for group in weather:
     print("group==========" + group)
-  return weather['humidity'],weather['wind'],weather['airData'],
-            weather['airQuality'],weather['date'],weather['weather'], 
-                math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
+  return weather['humidity'], weather['wind'], weather['airData'], weather['airQuality'], weather['date'], weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
