@@ -21,6 +21,7 @@ template_id = os.environ["TEMPLATE_ID"]
 def get_tips():
     url = "http://api.tianapi.com/tianqi/index?key=f614561f2dfa18f8642431319a618843&city=" + city
     res = requests.get(url).json()
+    print(res['newslist'][0])
     tips = res['newslist'][0]['tips']
     print(tips)
     return tips
