@@ -21,14 +21,19 @@ user_ids = os.environ["USER_ID"].split("\n")
 template_id = os.environ["TEMPLATE_ID"]
 
 def get_tips():
-    conn = http.client.HTTPSConnection('api.tianapi.com')  # 接口域名
-    params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city':'天津'})
-    headers = {'Content-type':'application/x-www-form-urlencoded'}
-    conn.request('POST','/tianqi/index',params,headers)
-    res = conn.getresponse()
-    data = res.read()
-    returnValue = json.loads(data.decode('utf-8'))
-    tips = returnValue['newslist'][0]['tips']
+    
+#     conn = http.client.HTTPSConnection('api.tianapi.com')  # 接口域名
+#     params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city':'天津'})
+#     headers = {'Content-type':'application/x-www-form-urlencoded'}
+#     conn.request('POST','/tianqi/index',params,headers)
+#     res = conn.getresponse()
+#     data = res.read()
+#     returnValue = json.loads(data.decode('utf-8'))
+#     tips = returnValue['newslist'][0]['tips']
+    
+    url = "http://api.tianapi.com/tianqi/index?key=f614561f2dfa18f8642431319a618843&city=" + city
+    res = requests.get(url).json()
+    tips = res['newslist'][0]['tips']
     print(tips)
     return tips
 
