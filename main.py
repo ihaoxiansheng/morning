@@ -94,6 +94,8 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "love_days1":{'value':'💕我们相恋已经：'},
         "birthday_left1":{"value":'🎂距离你的生日还有：'},
         "tips1":{"value":'👗穿衣建议：'},
+        "sunrise1":{"value":'🌅日出时间：'},
+        "sunset1":{"value":'🌆日落时间：'},
         "date":{"value":today.strftime('%Y年%m月%d日'),"color":get_random_color()},
         "week":{"value":get_week_day(datetime.now()),"color":get_random_color()},
         "weather":{"value":wea,"color":get_random_color()},
