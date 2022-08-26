@@ -25,7 +25,10 @@ headers = {'Content-type':'application/x-www-form-urlencoded'}
 conn.request('POST','/tianqi/index',params,headers)
 res = conn.getresponse()
 data = res.read()
-print("tips========" + data.decode('utf-8'))
+print("========================" + data.decode('utf-8'))
+print("11111111111111111111")
+print(data.decode('utf-8')['newslist'][0])
+print(data.decode('utf-8')['newslist'][0]['tips'])
 
 def get_access_token():
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
