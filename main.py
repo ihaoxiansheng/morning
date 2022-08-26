@@ -27,8 +27,10 @@ res = conn.getresponse()
 data = res.read()
 print("========================" + data.decode('utf-8'))
 print("11111111111111111111")
-print(data.decode('utf-8')['newslist'][0])
-print(data.decode('utf-8')['newslist'][0]['tips'])
+returnValue = data.decode('utf-8')
+newslist = returnValue['newslist'][0]
+print(newslist)
+print(newslist['tips'])
 
 def get_access_token():
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
