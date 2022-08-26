@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import http.client, urllib
 
 today = datetime.now() + timedelta(hours=8)
 start_date = os.environ['START_DATE']
@@ -17,6 +18,14 @@ app_secret = os.environ["APP_SECRET"]
 
 user_ids = os.environ["USER_ID"].split("\n")
 template_id = os.environ["TEMPLATE_ID"]
+
+conn = http.client.HTTPSConnection('api.tianapi.com')  # 接口域名
+params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city':'天津市'})
+headers = {'Content-type':'application/x-www-form-urlencoded'}
+conn.request('POST','/tianqi/index',params,headers)
+res = conn.getresponse()
+data = res.read()
+print("tips========" + data.decode('utf-8'))
 
 def get_access_token():
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
