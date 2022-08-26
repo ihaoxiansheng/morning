@@ -24,10 +24,10 @@ params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city'
 headers = {'Content-type':'application/x-www-form-urlencoded'}
 conn.request('POST','/tianqi/index',params,headers)
 res = conn.getresponse()
-data = res.json()
+data = res.read()
 print("========================" + data.decode('utf-8'))
 print("11111111111111111111")
-returnValue = data.decode('utf-8')
+returnValue = data.decode('utf-8').json()
 newslist = returnValue['newslist'][0]
 print(newslist)
 print(newslist['tips'])
