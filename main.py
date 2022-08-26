@@ -55,12 +55,6 @@ def get_weather():
   url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
   res = requests.get(url).json()
   weather = res['data']['list'][0]
-  print(weather['humidity'])
-  print(weather['wind'])
-  print(weather['airData'])
-  print(weather['airQuality'])
-  for group in weather:
-    print("group==========" + group)
   return weather['humidity'], weather['wind'], weather['airData'], weather['airQuality'], weather['date'], weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
@@ -118,7 +112,8 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "meet_days":{"value":get_meet(),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
         "highest": {"value":highest,"color":get_random_color()},
-        "lowest":{"value":lowest, "color":get_random_color()}}
+        "lowest":{"value":lowest, "color":get_random_color()}},
+        "tips":{"value":newslist['tips']}
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)
