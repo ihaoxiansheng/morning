@@ -113,8 +113,8 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "meet_days":{"value":get_meet(),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
         "highest": {"value":highest,"color":get_random_color()},
-        "lowest":{"value":lowest, "color":get_random_color()}},
-        "tips":{"value":get_tips()}
+        "tips":{"value":get_tips()},
+        "lowest":{"value":lowest, "color":get_random_color()}}
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)
