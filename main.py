@@ -26,11 +26,9 @@ headers = {'Content-type':'application/x-www-form-urlencoded'}
 conn.request('POST','/tianqi/index',params,headers)
 res = conn.getresponse()
 data = res.read()
-print("========================" + data.decode('utf-8'))
-print("11111111111111111111")
 returnValue = json.loads(data.decode('utf-8'))
 newslist = returnValue['newslist'][0]
-print(newslist)
+print(newslist + "\n")
 print(newslist['tips'])
 
 def get_access_token():
