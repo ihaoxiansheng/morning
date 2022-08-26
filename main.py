@@ -28,7 +28,7 @@ res = conn.getresponse()
 data = res.read()
 returnValue = json.loads(data.decode('utf-8'))
 newslist = returnValue['newslist'][0]
-print(newslist + "\n")
+print(newslist)
 print(newslist['tips'])
 
 def get_access_token():
