@@ -27,7 +27,7 @@ res = conn.getresponse()
 data = res.read()
 print("========================" + data.decode('utf-8'))
 print("11111111111111111111")
-returnValue = data.decode('utf-8').json()
+returnValue = json.loads(data.decode('utf-8'))
 newslist = returnValue['newslist'][0]
 print(newslist)
 print(newslist['tips'])
