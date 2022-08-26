@@ -22,9 +22,8 @@ def get_tips():
     url = "http://api.tianapi.com/tianqi/index?key=f614561f2dfa18f8642431319a618843&city=" + city
     res = requests.get(url).json()
     print(res['newslist'][0])
-    tips = res['newslist'][0]['tips']
-    print(tips)
-    return tips
+    newslist = res['newslist'][0]
+    return newslist['tips'],newslist['sunrise'],newslist['sunset']
 
 def get_access_token():
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
@@ -80,6 +79,7 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 humidity, wind, airData, airQuality, da, wea, temperature, highest, lowest = get_weather()
+tips, sunrise, sunset = get_tips()
 data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "date1":{'value':'📅今天是：'},
         "city1":{'value':'🏙城市：'},
@@ -108,7 +108,9 @@ data = {"today_date":{"value":da,"color":get_random_color()}, # xxxx-xx-xx
         "meet_days":{"value":get_meet(),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
         "highest": {"value":highest,"color":get_random_color()},
-        "tips":{"value":get_tips(),"color":get_random_color()},
+        "tips":{"value":tips,"color":get_random_color()},
+        "sunrise":{"value":sunrise,"color":get_random_color()},
+        "sunset":{"value":sunset,"color":get_random_color()},
         "lowest":{"value":lowest, "color":get_random_color()}}
 count = 0
 for user_id in user_ids:
