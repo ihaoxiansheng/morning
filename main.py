@@ -22,7 +22,7 @@ template_id = os.environ["TEMPLATE_ID"]
 
 def get_tips():
     conn = http.client.HTTPSConnection('api.tianapi.com')  # 接口域名
-    params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city':'天津市'})
+    params = urllib.parse.urlencode({'key':'f614561f2dfa18f8642431319a618843','city':'天津'})
     headers = {'Content-type':'application/x-www-form-urlencoded'}
     conn.request('POST','/tianqi/index',params,headers)
     res = conn.getresponse()
