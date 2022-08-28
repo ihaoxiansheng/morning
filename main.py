@@ -48,18 +48,10 @@ def get_access_token():
 
 
 # 获取星期几
-def get_week_day(date):
-    week_day = {
-        0: '星期一',
-        1: '星期二',
-        2: '星期三',
-        3: '星期四',
-        4: '星期五',
-        5: '星期六',
-        6: '星期日',
-    }
-    day = date.weekday()  # weekday()可以获得是星期几
-    return week_day[day]
+def get_week_day():
+    week_list = ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"]
+    week_day = week_list[datetime.date(today).weekday()]
+    return week_day
 
 
 # 获取天气
@@ -127,7 +119,7 @@ data = {"today_date": {"value": da, "color": get_random_color()},
         "sunrise1": {"value": '日出时间：'},
         "sunset1": {"value": '日落时间：'},
         "date": {"value": today.strftime('%Y年%m月%d日'), "color": get_random_color()},
-        "week": {"value": get_week_day(datetime.now()), "color": get_random_color()},
+        "week": {"value": get_week_day(), "color": get_random_color()},
         "weather": {"value": wea, "color": get_random_color()},
         "humidity": {"value": humidity, "color": get_random_color()},  # 湿度
         "wind": {"value": wind, "color": get_random_color()},  # 风向级
